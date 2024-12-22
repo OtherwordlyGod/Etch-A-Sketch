@@ -22,13 +22,13 @@ let mouseDown = false;
    });
 
  container.addEventListener("mouseover", (event) => {
-    if (mouseDown === true && event.target.classList.contains("grid-item")) {
+    if (mouseDown && event.target.classList.contains("grid-item")) {
       const target = event.target;
-      const currentColor = window.getComputedStyle(target).backgroundColor;
-    
-      if (currentColor != "rgba(0, 0, 0, 0)") {
-        changeOpacity(event);
-      }; 
+
+      if (parseFloat(target.style.opacity) < 1) {
+        changeOpacity(target); 
+      };
+
       event.target.style.backgroundColor = randomRGB();
     };
   });
@@ -59,16 +59,14 @@ function randomRGB() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-function changeOpacity(event) {
-  const secondTarget = event.target;
-  let currentOpacity = parseFloat(window.getComputedStyle(secondTarget).opacity);
-  currentOpacity += 0.1;
-  if (currentOpacity > 1) {
-    currentOpacity = 1;
-  };
-  console.log(currentOpacity);
-  event.target.style.opacity = currentOpacity;
-}
+function changeOpacity(target) {
+    let currentOpacity = parseFloat(target.style.opacity);
+    currentOpacity += 0.1;
+    if (currentOpacity > 1) {
+      currentOpacity = 1;
+    }
+    target.style.opacity = currentOpacity;  // Update opacity directly on the element
+};
 
 generateCanvas(canvasSize);
 
