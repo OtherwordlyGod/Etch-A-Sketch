@@ -1,0 +1,29 @@
+body {
+    display: block;
+  }
+  
+  #container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    margin: auto;
+  }
+  
+  #button {
+    height: 22px;
+    margin-left: 3px;
+  }
+  
+  #canvas-size {
+    height: 15px
+  }
+  
+  #box {
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+  }
+
+
