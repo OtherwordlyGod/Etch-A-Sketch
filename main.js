@@ -1,4 +1,4 @@
-let canvasSize = 16;
+let canvasSize = 16;   // Default size for the canvas (16x16 grid)
 
 const container = document.getElementById("container");
 
@@ -24,7 +24,7 @@ let mouseDown = false;
    });
 
  container.addEventListener("mouseover", (event) => {
-
+    // use of event delegation
     if (mouseDown && event.target.classList.contains("grid-item")) { 
 
       const target = event.target;
@@ -48,11 +48,11 @@ button.addEventListener("click", () => {
 
   let input = document.getElementById("canvas-size")
 
-  redrawCanvas(input.value);
+  clearAndRedrawCanvas(input.value);
 
 })
 
-function redrawCanvas(userInput) {
+function clearAndRedrawCanvas(userInput) {
 
   container.innerHTML = "";
 
@@ -73,14 +73,14 @@ function changeOpacity(target) {
 
     currentOpacity += 0.1;
 
-    if (currentOpacity > 1) { 
+    if (currentOpacity > 1) { // clamps opacity to 1
       currentOpacity = 1;
     }
 
     target.style.opacity = currentOpacity;  
 };
 
-
+// Ensure that DOM is fully loaded before generating the canvas
 document.addEventListener("DOMContentLoaded", () => {
   generateCanvas(canvasSize);
 });
