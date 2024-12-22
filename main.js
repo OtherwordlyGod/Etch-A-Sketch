@@ -3,6 +3,7 @@ let canvasSize = 16;
 const container = document.getElementById("container");
 
 function generateCanvas(size) {
+
    for (let i = 0; i < size * size; i ++) {
        const square = document.createElement("div");
        square.classList.add("grid-item");
@@ -13,6 +14,7 @@ function generateCanvas(size) {
    };
 
 let mouseDown = false;
+
    container.addEventListener("mousedown", () => {
       mouseDown = true;
    });
@@ -22,34 +24,40 @@ let mouseDown = false;
    });
 
  container.addEventListener("mouseover", (event) => {
-    if (mouseDown && event.target.classList.contains("grid-item")) {
+
+    if (mouseDown && event.target.classList.contains("grid-item")) { 
+
       const target = event.target;
 
-      if (parseFloat(target.style.opacity) < 1) {
+      if (parseFloat(target.style.opacity) < 1) { 
+
         changeOpacity(target); 
+
       };
 
       event.target.style.backgroundColor = randomRGB();
     };
+
   });
+
 };
 
 const button = document.getElementById("button");
 
 button.addEventListener("click", () => {
+
   let input = document.getElementById("canvas-size")
+
   redrawCanvas(input.value);
+
 })
 
 function redrawCanvas(userInput) {
-  let child = container.lastElementChild;
-  
-  while (child) {
-    container.removeChild(child);
-    child = container.lastElementChild;
-  };
-  
+
+  container.innerHTML = "";
+
   generateCanvas(userInput);
+
 }
 
 function randomRGB() {
@@ -60,14 +68,21 @@ function randomRGB() {
 }
 
 function changeOpacity(target) {
+
     let currentOpacity = parseFloat(target.style.opacity);
+
     currentOpacity += 0.1;
-    if (currentOpacity > 1) {
+
+    if (currentOpacity > 1) { 
       currentOpacity = 1;
     }
-    target.style.opacity = currentOpacity;  // Update opacity directly on the element
+
+    target.style.opacity = currentOpacity;  
 };
 
-generateCanvas(canvasSize);
+
+document.addEventListener("DOMContentLoaded", () => {
+  generateCanvas(canvasSize);
+});
 
 
