@@ -1,4 +1,5 @@
 let canvasSize = 16;
+let brightnessLevel = 1;
 
 const container = document.getElementById("container");
 
@@ -27,6 +28,8 @@ let mouseDown = false;
       
       if (currentColor === "rgba(0, 0, 0, 0)") {
         event.target.style.backgroundColor = randomRGB();
+        brightnessLevel -= 0.1;
+        changeBrightness(event, brightnessLevel);
       } 
     };
   });
@@ -57,6 +60,15 @@ function randomRGB() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
+function changeBrightness(e, level) {
+  if (level < 0.1) {
+    e.target.style.filter = "brightness(0)";
+  } else {
+  e.target.style.filter = `brightness(${level})`;
+  };
+
+  console.log(level);
+};
 
   
 
